@@ -1,13 +1,59 @@
 .nav--logo{
-    
+    height: 48px;
+}
+.menu__item{
+    font-size: 12px;
+    font-weight: 600;
+}
+.menu__item:hover{
+    color: #2a7fff !important;
+}
+.header__contenido{
+    height: 70vh;
+}
+.header__titulo{
+    font-size: 42px;
+    font-weight: 900;
+}
+.header__boton{
+    margin: 1.5em 0;
 }
 
+
+
+.titulo--white{
+    color: white;
+}
+.titulo--blue{
+    color: #2a7fff;
+}
+.header__boton--principal{
+    padding: 0.8em 1.5em;
+    background: #2a7fff;
+    color: #fff;
+    border-radius: 10px;
+}
+.header__boton--principal:hover{
+    background: #1a52a5;
+    color: #fff;
+}
+
+.header{
+    background: url("../imges/headerfondo.png");
+    background-size: cover;
+    background-position: center;
+}
 
 
 @media (max-width: 576px) { 
     .nav--logo{
         height: 48px;
     }
+    .header__titulo{
+        font-size: 26px;
+        font-weight: 900;
+    }
+
 }
 
 @media (max-width: 768px) { 
