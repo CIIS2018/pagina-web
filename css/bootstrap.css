@@ -160,6 +160,8 @@ sup {
   top: -.5em;
 }
 
+
+
 a {
   color: #007bff;
   text-decoration: none;
@@ -4342,6 +4344,7 @@ input[type="button"].btn-block {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
+  min-height: 100%;
 }
 
 .card > hr {

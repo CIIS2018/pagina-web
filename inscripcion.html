@@ -11,6 +11,13 @@
      <link rel="stylesheet" href="css/taller.css">
      <LINK REL=StyleSheet HREF="CSS/precios.css" TITLE="precios">
     <title>CIIS-2018</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+
 </head>
 <body>
 
@@ -69,29 +76,29 @@
     <!--TERMINOS EL HEADER-->
     <div class="container-fluid mt-5 mb-5">
             <div class="container-fluid mt-5 mb-5 bg-black">
-    <form>
+    <form id="inscripcion">
 
             <div class="row">
                     <div class="col">
-                            <input type="text" class="form-control" id="exampleInputName" placeholder="Nombre">
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre">
                     </div>
                     <div class="col"> 
-                    <input type="text" class="form-control" id="exampleInputApellido" placeholder="Apellido">
+                    <input type="text" class="form-control" id="apellido" placeholder="Apellido">
                     </div>
             </div>
 
             <div class="form-group mt-3">
                         
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email">
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="email">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                   </div>
 
             <div class="row">
                     <div class="col">
-                            <input type="text" class="form-control" id="exampleInputDNI" placeholder="DNI">
+                            <input type="text" class="form-control" id="dni" placeholder="DNI">
                     </div>
                     <div class="col"> 
-                            <input type="text" class="form-control" id="exampleInputCiudad" placeholder="Ciudad">
+                            <input type="text" class="form-control" id="ciudad" placeholder="Ciudad">
                     </div>
             </div>
 
@@ -115,10 +122,10 @@
                         </div>           
                         <div class="form-group">
                                 
-                                <select class="form-control" id="exampleFormControlSelect1">
+                                <select class="form-control" id="inscripcion">
                                         <option value="" disabled selected>Tipo de inscricpion</option>
-                                    <option>Profesional</option>
-                                  <option>Estudiante</option>
+                                    <option value="profesional">Profesional</option>
+                                  <option value="estudiante">Estudiante</option>
                                   
                                 </select>
                               </div>
@@ -129,15 +136,63 @@
                 </div>
                 <div class="form-group">
                         <label for="exampleFormControlFile1">Foto del voucher</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <input type="file" class="form-control-file" id="">
                       </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
+
+    <div id="controles">
+        <button id="pausar">Pausar</button>
+        <button id="reanudar">Reanudar</button>
+        <button id="cancelar">Cancelar</button>    
+      </div>
+    
+      <div id="mensaje"></div>
+    
+      <div id="archivo">
+        Archivo subido: <a href="" id="enlace">Click para ver</a>
+      </div>
+
+<script>
+  // Initialize Firebase
+  $( "#inscripcion" ).submit(function( event ) {
+      event.preventDefault();
+     
+  var config = {
+    apiKey: "AIzaSyCx0QW4ToFrqqFhaRSpMiJQKz5Uy7fGSuk",
+    authDomain: "ciis-fe146.firebaseapp.com",
+    databaseURL: "https://ciis-fe146.firebaseio.com",
+    projectId: "ciis-fe146",
+    storageBucket: "ciis-fe146.appspot.com",
+    messagingSenderId: "542438907490"
+  };
+  firebase.initializeApp(config);
+
+        var nombre=document.getElementById('nombre').value;
+           var apellido=document.getElementById('apellido').value;
+           var email=document.getElementById('email').value;
+           var dni=document.getElementById('dni').value;
+           var ciudad=document.getElementById('ciudad').value; 
+           var postsRef = firebase.database().ref().child("registrados");
+           var newPostRef = postsRef.push();
+           
+           newPostRef.set({
+             nombre: nombre,
+             apellido: apellido,
+             email:email,
+             dni:dni,
+             imagen:ciudad
+           });
+
+});
+
+</script>
+
     </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
