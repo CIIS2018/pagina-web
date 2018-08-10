@@ -1,6 +1,7 @@
 <?php
-if(!empty($_FILES['file']['name'])){
-    echo $insert='ok';
+if(!empty($_FILES['fotovoucher']['name'])){
+    $insert='ok';
+    echo 'ok';
 }
 ?>
     
